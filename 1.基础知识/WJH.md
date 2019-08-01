@@ -6,32 +6,42 @@ $$
 \label{opt}
 \begin{array}{ll}{\underset{}{\operatorname{minimize}}} & {f_{0}(x)} \\ {\text { subject to }} & {f_{i}(x) \leq b_{i}, \quad i=1, \ldots, m}\end{array}
 $$
-其中，如果用$x^{*}$表示式(\ref{opt})的最优解，则存在任何变量$z$使得$f_{0}(z) \geq f_{0}\left(x^{\star}\right)$成立。当函数$f$以及约束是**线性**的，则存在$$
+其中，如果用$x^{*}$表示式(\ref{opt})的最优解，则存在任何变量$z$使得$f_{0}(z) \geq f_{0}\left(x^{\star}\right)$成立。当函数$f$以及约束是**线性**的，则存在
+$$
 f_{i}(\alpha x+\beta y)=\alpha f_{i}(x)+\beta f_{i}(y)
-$$而如果式(\ref{opt})是一个**凸优化**问题，则满足$$
+$$
+而如果式(\ref{opt})是一个**凸优化**问题，则满足
+$$
 f_{i}(\alpha x+\beta y) \leq \alpha f_{i}(x)+\beta f_{i}(y)
 $$
 其中$\text { all } \alpha, \beta \in \mathbf{R} \text { with } \alpha+\beta=1, \alpha \geq 0, \beta \geq 0$。
 ### 最小二乘与线性规划Least-squares and linear programming
 #### 最小二乘
-&ensp;&ensp;&ensp;最小二乘是一类没有约束的优化问题，表达式为$$
+&ensp;&ensp;&ensp;最小二乘是一类没有约束的优化问题，表达式为
+$$
 \begin{equation}
 \label{least_square}
 \text { min } \quad f_{0}(x)=\|A x-b\|_{2}^{2}=\sum_{i=1}^{k}\left(a_{i}^{T} x-b_{i}\right)^{2}
 \end{equation}
-$$针对问题(\ref{least_square})的解，可以简化为为解决如下问题
-$$\begin{equation}
+$$
+针对问题(\ref{least_square})的解，可以简化为为解决如下问题
+$$
+\begin{equation}
 \left(A^{T} A\right) x=A^{T} b
-\end{equation}$$
+\end{equation}
+$$
 因此可以求得解析解$\left(A^{T} A\right) x=A^{T} b$。
 
 &ensp;&ensp;&ensp;最小二乘有几种形式：
-&ensp;&ensp;&ensp;1. 权重最小二乘：$$
+&ensp;&ensp;&ensp;1. 权重最小二乘：
+$$
 \sum_{i=1}^{k} w_{i}\left(a_{i}^{T} x-b_{i}\right)^{2}
 $$
-&ensp;&ensp;&ensp;2.正则最小二乘：$$
+&ensp;&ensp;&ensp;2.正则最小二乘：
+$$
 \sum_{i=1}^{k}\left(a_{i}^{T} x-b_{i}\right)^{2}+\rho \sum_{i=1}^{n} x_{i}^{2}
-$$参数$\rho$表示了一个trade-off的过程，在最小化前一项时，又要保证后一项不能太大。
+$$
+参数$\rho$表示了一个trade-off的过程，在最小化前一项时，又要保证后一项不能太大。
 #### 线性规划
 &ensp;&ensp;&ensp;线性规划标准表达式为：
 $$
@@ -41,46 +51,55 @@ $$
 $$
 ## 凸集Convex sets
 ### 仿射集和凸集
-1.**线和线段集合**主要用下式表示$$\begin{equation}
+1.**线和线段集合**主要用下式表示
+$$
+\begin{equation}
 y=\theta x_{1}+(1-\theta) x_{2}
-\end{equation}$$
+\end{equation}
+$$
 当$\theta$值不同时，表现出线或者线段的形式，如图1所示：
 
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/图1.png" width=80% height=% /></center>
+<center><img src="./img-ch1/w-图1.png" width=80% height=% /></center>
 <center>图1 线与线段集合示意图</center>
-
 2.**仿射集**：如果$C \subseteq \mathbf{R}^{n}$是一个仿射集，则在这个集合内任意点的线集合都属于这个集合，即$x_{1}, \ldots, x_{k} \in C \ and \ \theta_{1}+\cdots+\theta_{k}=1$，则$\theta_{1} x_{1}+\cdots+\theta_{k} x_{k}$。仿射集有如下*性质*：假设$C$是一个仿射集，且$x_{0} \in C$，则集合$V=C-x_{0}=\left\{x-x_{0} | x \in C\right\}$是一个子空间，并且仿射集$C$可以表达成$C=V+x_{0}=\left\{v+x_{0} | v \in V\right\}$，即一个子空间加一个补偿。
 
 <font color="blue">**Remark for 仿射函数：**</font>一般来说，仿射函数指的是最高次数为$1$的多项式函数，当常数项为$0$时退化为线性函数，即$f(x)=A x+b$是一个仿射函数，如果$f$是一个矢量函数，则$f\left(x_{1}, x_{2}, \ldots, x_{n}\right)=A_{1} x_{1}+A_{2} x_{2}+\ldots+A_{n} x_{n}+b$为一个仿射函数
- 
+
 定义$C$的仿射包(affine hull: aff C)：
-$$\begin{equation}
+$$
+\begin{equation}
 \label{aff}
 \operatorname{aff} C=\left\{\theta_{1} x_{1}+\cdots+\theta_{k} x_{k} | x_{1}, \ldots, x_{k} \in C, \theta_{1}+\cdots+\theta_{k}=1\right\}
 \end{equation}
 $$
 仿射包是仿射集中最小的子集。给出一个例子说明什么是**相对内部(relative interior)**，**相对边界(relative boundary)**：
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/仿射集.png" width=80% height=80% /></center>
-
+<center><img src="./img-ch1/w-仿射集.png" width=80% height=80% /></center>
 <font color="blue">***Remark for 仿射包、开集、闭集、内部、边界、相对内部、相对边界***</font>：
 &ensp;&ensp;&ensp;仿射包从式子（\ref{aff}）可知，是各个$x$的组合。
 &ensp;&ensp;&ensp;开集指的是不包含边界的集合（如，$1 < x < 2$），闭集指的是包含边界的集合（如，$1 \le x \le 2$）。针对闭集而言，内部就是它的开集；正对开集来说，内部就是它本身。
 &ensp;&ensp;&ensp;相对内部以及相对边界是针对仿射包来定义的，即针对某个集合的仿射包，它的内部是什么，它的边界是什么。举个例子：
 
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/仿射包.jpg" width=80% height=80% /></center>
-
-
-3.**凸集**：对于任意属于集合$C$的$x_1$，$x_2$，存在$0 \leq \theta \leq 1$使得$\theta x_{1}+(1-\theta) x_{2} \in C$，则集合$C$是凸集。凸包(Convex hull)为：$$\operatorname{conv} C=\left\{\theta_{1} x_{1}+\cdots+\theta_{k} x_{k} | x_{i} \in C, \theta_{i} \geq 0, i=1, \ldots, k, \theta_{1}+\cdots+\theta_{k}=1\right\}$$
+<center><img src="./img-ch1/w-仿射包.jpg" width=80% height=80% /></center>
+3.**凸集**：对于任意属于集合$C$的$x_1$，$x_2$，存在$0 \leq \theta \leq 1$使得$\theta x_{1}+(1-\theta) x_{2} \in C$，则集合$C$是凸集。凸包(Convex hull)为：
+$$
+\operatorname{conv} C=\left\{\theta_{1} x_{1}+\cdots+\theta_{k} x_{k} | x_{i} \in C, \theta_{i} \geq 0, i=1, \ldots, k, \theta_{1}+\cdots+\theta_{k}=1\right\}
+$$
 
 4.**圆锥集**：对于每一个$x \in C \text { and } \theta \geq 0$都有$\theta x \in C$，更特殊的，如果对于任意$x_{1}, x_{2} \in C \text { and } \theta_{1}, \theta_{2} \geq 0$，都有$\theta_{1} x_{1}+\theta_{2} x_{2} \in C$，则集合$C$是一个凸锥。锥包可以表示为：
-$$\left\{\theta_{1} x_{1}+\cdots+\theta_{k} x_{k} | x_{i} \in C, \theta_{i} \geq 0, i=1, \ldots, k\right\}$$。
+$$
+\left\{\theta_{1} x_{1}+\cdots+\theta_{k} x_{k} | x_{i} \in C, \theta_{i} \geq 0, i=1, \ldots, k\right\}.
+$$
 
 ### 保持凸性的运算Operations that preserve convexity
 1. 交运算
 2. 仿射运算、仿射逆运算
 3. 乘、加
 4. 投影函数(perspective functions)：函数$P$是一个投影函数当$P : \mathbf{R}^{n+1} \rightarrow \mathbf{R}^{n}$，$P(z, t)=z / t$
-5. 线性分割：假设$g : \mathbf{R}^{n} \rightarrow \mathbf{R}^{m+1}$是仿射的，即$g(x)=\left[\begin{array}{c}{A} \\ {c^{T}}\end{array}\right] x+\left[\begin{array}{l}{b} \\ {d}\end{array}\right]$，则函数$$f(x)=(A x+b) /\left(c^{T} x+d\right), \quad \operatorname{dom} f=\left\{x | c^{T} x+d>0\right\}$$是线性分割函数。
+5. 线性分割：假设$g : \mathbf{R}^{n} \rightarrow \mathbf{R}^{m+1}$是仿射的，即$g(x)=\left[\begin{array}{c}{A} \\ {c^{T}}\end{array}\right] x+\left[\begin{array}{l}{b} \\ {d}\end{array}\right]$，则函数
+$$
+f(x)=(A x+b) /\left(c^{T} x+d\right), \quad \operatorname{dom} f=\left\{x | c^{T} x+d>0\right\}
+$$
+是线性分割函数。
 
 ### 一般性不等式
 感觉没什么用
@@ -88,7 +107,7 @@ $$\left\{\theta_{1} x_{1}+\cdots+\theta_{k} x_{k} | x_{i} \in C, \theta_{i} \geq
 先介绍一个**分割超平面定理**（使用超平面或者仿射函数来分割不相交的凸集）：假设$C$和$D$是两个不相交的凸集，即$C \cap D = \emptyset$。然后存在$a \ne 0$和$b$，使得${a^T}x \le b$对于所有$x \in C$，${a^T}x \ge b$对于所有$x \in D$。换句话说，${a^T}x - b$这一仿射函数在$C$上是非正的，在$D$上是非负的。对于集合$C$和$D$，超平面$\{ x|{a^T}x = b\} $被称为分离超平面，或被称为分离了集合$C$和$D$。当上述等号不存在时，我们称为**严格分离**。
 
 **支撑面**：图片理解如下所示，其实很简单的就可以理解，就是存在一个面，把某一平面“支”起来了。用数学语句表达为：假设$C \subseteq \mathbf{R}^{n}$，以及$x_0$是一个集合中的边界点，如果$a \neq 0$且$a^{T} x \leq a^{T} x_{0}$对于所有$x \in C$都成立，则超平面$\left\{x | a^{T} x=a^{T} x_{0}\right\}$是一个支撑面。
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/支撑面.jpg" width=80% height=80% /></center>
+<center><img src="./img-ch1/w-支撑面.jpg" width=80% height=80% /></center>
 ### 对偶圆锥以及一般性不等式
 跳过，书本51
 
@@ -102,7 +121,7 @@ f(\theta x+(1-\theta) y) \leq \theta f(x)+(1-\theta) f(y)
 \end{equation}
 $$
 几何解释如图：
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/凸函数.jpg" width=80% height=80% /></center>
+<center><img src="./img-ch1/w-凸函数.jpg" width=80% height=80% /></center>
 如果$x \neq y$且$0<\theta<1$，则函数是严格凸，相应的$-f$就是（严格）凹。
 2.**判定凸函数的条件**：
 &ensp;&ensp;&ensp;**一阶充分条件**：假设$f$在定义域（开域，即不包含边界点，边界点不可导无所谓）内是可导的，则当$f$的定义域是凸的，且对于任何属于其定义域的$x$和$y$满足以下式子时
@@ -134,8 +153,7 @@ $$
 \end{equation}
 $$
 几何解释就是函数上面的所有部分就是上镜图，如图所示：
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/上镜图.jpg" width=80% height=80% /></center>
-
+<center><img src="./img-ch1/w-上镜图.jpg" width=80% height=80% /></center>
 ### 子级集Sublevel sets 
 Sublevel sets的定义如下：
 $$
@@ -144,7 +162,6 @@ $$
 C_{\alpha}=\{x \in \operatorname{dom} f | f(x) \leq \alpha\}
 \end{equation}
 $$
-
 <font color="blue">***Remark for 上镜图以及子级集***</font>：如果函数是凹的，上述定义也成立，只是不等式符号要变。
 
 ### Jensen's 不等式
@@ -169,24 +186,28 @@ $$
 f(\mathbf{E} x) \leq \mathbf{E} f(x)
 \end{equation}
 $$
-
 ### 一些常用不等式
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/常见不等式.jpg" width=100% height=100% /></center>
-
+<center><img src="./img-ch1/w-常见不等式.jpg" width=100% height=100% /></center>
 ### 保持凸函数的运算
 <details>
 <summary style><font color="#006666">几种运算</font>
 </summary>
 1. 非负权重和：
-$$f=w_{1} f_{1}+\cdots+w_{m} f_{m}$$
+$$
+f=w_{1} f_{1}+\cdots+w_{m} f_{m}
+$$
 2. 积分：
-$$g(x)=\int_{\mathcal{A}} w(y) f(x, y) dy$$
+$$
+g(x)=\int_{\mathcal{A}} w(y) f(x, y) dy
+$$
 其中$w(y) \geq 0$
 3. 仿射变换：
-$$g(x)=f(A x+b)$$
+$$
+g(x)=f(A x+b)
+$$
 4. 分段最大值（或者最大上界）：
-$$f(x)=\max \left\{f_{1}(x), f_{2}(x)\right\}$$
-$$g(x)=\sup _{y \in \mathcal{A}} f(x, y)$$
+$$ f(x)=\max \left\{f_{1}(x), f_{2}(x)\right\} $$
+$$ g(x)=\sup _{y \in \mathcal{A}} f(x, y) $$
 5. 复合函数：
 $$f(x)=h \circ g=h(g(x)), \quad \text { dom } f=\{x \in \operatorname{dom} g | g(x) \in \operatorname{dom} h\}$$
 二阶导数为：
@@ -234,12 +255,10 @@ $f$对$x$的二阶偏导为：
 $$
 \frac{{{\partial ^2}f}}{{\partial {x^2}}} = 2A
 $$
-
 $f$对$y$的二阶偏导为：
 $$
 \frac{{{\partial ^2}f}}{{\partial {y^2}}} = 2C
 $$
-
 $f$对$x,y$的二阶偏导为：
 $$
 \frac{{{\partial ^2}f}}{{\partial x\partial y}} = 2B
@@ -266,7 +285,7 @@ A&B\\
 \end{equation}
 $$
 根据Schur补引理：
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/Schur补.jpg" width=100% height=100% /></center>
+<center><img src="./img-ch1/w-Schur补.jpg" width=100% height=100% /></center>
 
 可得$H \ge 0 \Leftrightarrow A \ge 0,A - B{C^ + }{B^T} \ge 0$，其中$C^ +$表示伪逆，如果$C$是可逆的，则可以写成$C^{-1}$。
 </details>
@@ -290,7 +309,7 @@ y
 **1. 定义：**
 $$f^{*}(y)=\sup _{x \in \operatorname{dom} f}\left(y^{T} x-f(x)\right)$$
 几何解释为：
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/共轭函数.jpg" width=100% height=100% /></center>
+<center><img src="./img-ch1/w-共轭函数.jpg" width=100% height=100% /></center>
 <font color="blue">***Remark***</font>：定义的意思其实就是，如何得到$\left(y^{T} x-f(x)\right)$的最大值，如果$f$是可导的，则$\left(y^{T} x-f(x)\right)$对$x$求偏导并令其等于0，求出最大值点再得到最大值即是$f(x)$的共轭函数。
 
 **2. 性质：**
@@ -304,7 +323,7 @@ $$f^{*}(y)=\sup _{x \in \operatorname{dom} f}\left(y^{T} x-f(x)\right)$$
 **1. 定义：**
 $$S_{\alpha}=\{x \in \operatorname{dom} f | f(x) \leq \alpha\}$$
 几何解释为：
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/拟凸函数.jpg" width=100% height=100% /></center>
+<center><img src="./img-ch1/w-拟凸函数.jpg" width=100% height=100% /></center>
 <font color="blue">***Remark***</font>：定义的意思其实就是在某个值的下方，在某一个区间内，这个函数是一个凸函数。
 
 **2. 性质：**
@@ -316,8 +335,8 @@ $$S_{\alpha}=\{x \in \operatorname{dom} f | f(x) \leq \alpha\}$$
 2. f是不增加或者不减少的。
 3. 存在一个点$c$使得在区间$t \leq c$，$f$是不增加的，在$t \geq c$，$f$不减少
 几何解释就是两张函数图：
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/拟凸函数Jensen.jpg" width=100% height=100% /></center>
-<center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/拟凸函数c.jpg" width=100% height=100% /></center>
+<center><img src="./img-ch1/w-拟凸函数Jensen.jpg" width=100% height=100% /></center>
+<center><img src="./img-ch1/w-拟凸函数c.jpg" width=100% height=100% /></center>
 </details>
 
 1. 一阶条件（凸函数的一阶条件为（\ref{first_order}））：
@@ -334,7 +353,6 @@ $$
 y^{T} \nabla f(x)=0 \Longrightarrow y^{T} \nabla^{2} f(x) y \geq 0
 \end{equation}
 $$
-
 &ensp;&ensp;&ensp;**保持拟凸的运算**：
 <details>
 <summary style><font color="#006666">运算</font>
@@ -371,6 +389,7 @@ $$
 X_{\mathrm{opt}}=\left\{x | f_{i}(x) \leq 0, i=1, \ldots, m, h_{i}(x)=0, i=1, \ldots, p, f_{0}(x)=p^{\star}\right\}
 \end{equation}
 $$
+
 $$
 \begin{equation}
 \label{optimal_value}
