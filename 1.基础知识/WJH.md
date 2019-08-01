@@ -3,10 +3,8 @@
 ### 数学优化Mathematical optimization
 &ensp;&ensp;&ensp;数学优化问题通常由下式给出
 $$
-\begin{equation}
 \label{opt}
 \begin{array}{ll}{\underset{}{\operatorname{minimize}}} & {f_{0}(x)} \\ {\text { subject to }} & {f_{i}(x) \leq b_{i}, \quad i=1, \ldots, m}\end{array}
-\end{equation}
 $$
 其中，如果用$x^{*}$表示式(\ref{opt})的最优解，则存在任何变量$z$使得$f_{0}(z) \geq f_{0}\left(x^{\star}\right)$成立。当函数$f$以及约束是**线性**的，则存在$$
 f_{i}(\alpha x+\beta y)=\alpha f_{i}(x)+\beta f_{i}(y)
