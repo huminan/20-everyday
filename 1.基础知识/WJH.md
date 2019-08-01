@@ -1,6 +1,6 @@
 # <center>S. Boyd and L. Vandenbeghe, Convex Optimization. Cambridge, U.K.: Cambridge Univ. Press, 2004.</center>
-##Introduction
-###数学优化Mathematical optimization
+## Introduction
+### 数学优化Mathematical optimization
 &ensp;&ensp;&ensp;数学优化问题通常由下式给出
 $$
 \begin{equation}
@@ -14,8 +14,8 @@ $$而如果式(\ref{opt})是一个**凸优化**问题，则满足$$
 f_{i}(\alpha x+\beta y) \leq \alpha f_{i}(x)+\beta f_{i}(y)
 $$
 其中$\text { all } \alpha, \beta \in \mathbf{R} \text { with } \alpha+\beta=1, \alpha \geq 0, \beta \geq 0$。
-###最小二乘与线性规划Least-squares and linear programming
-####最小二乘
+### 最小二乘与线性规划Least-squares and linear programming
+#### 最小二乘
 &ensp;&ensp;&ensp;最小二乘是一类没有约束的优化问题，表达式为$$
 \begin{equation}
 \label{least_square}
@@ -34,15 +34,15 @@ $$
 &ensp;&ensp;&ensp;2.正则最小二乘：$$
 \sum_{i=1}^{k}\left(a_{i}^{T} x-b_{i}\right)^{2}+\rho \sum_{i=1}^{n} x_{i}^{2}
 $$参数$\rho$表示了一个trade-off的过程，在最小化前一项时，又要保证后一项不能太大。
-####线性规划
+#### 线性规划
 &ensp;&ensp;&ensp;线性规划标准表达式为：
 $$
 \begin{equation}
 \begin{array}{ll}{\underset{}{\operatorname{minimize}}} & {c^{T} x} \\ {\text { subject to }} & {a_{i}^{T} x \leq b_{i}, \quad i=1, \ldots, m}\end{array}
 \end{equation}
 $$
-##凸集Convex sets
-###仿射集和凸集
+## 凸集Convex sets
+### 仿射集和凸集
 1.**线和线段集合**主要用下式表示$$\begin{equation}
 y=\theta x_{1}+(1-\theta) x_{2}
 \end{equation}$$
@@ -77,25 +77,25 @@ $$
 4.**圆锥集**：对于每一个$x \in C \text { and } \theta \geq 0$都有$\theta x \in C$，更特殊的，如果对于任意$x_{1}, x_{2} \in C \text { and } \theta_{1}, \theta_{2} \geq 0$，都有$\theta_{1} x_{1}+\theta_{2} x_{2} \in C$，则集合$C$是一个凸锥。锥包可以表示为：
 $$\left\{\theta_{1} x_{1}+\cdots+\theta_{k} x_{k} | x_{i} \in C, \theta_{i} \geq 0, i=1, \ldots, k\right\}$$。
 
-###保持凸性的运算Operations that preserve convexity
+### 保持凸性的运算Operations that preserve convexity
 1. 交运算
 2. 仿射运算、仿射逆运算
 3. 乘、加
 4. 投影函数(perspective functions)：函数$P$是一个投影函数当$P : \mathbf{R}^{n+1} \rightarrow \mathbf{R}^{n}$，$P(z, t)=z / t$
 5. 线性分割：假设$g : \mathbf{R}^{n} \rightarrow \mathbf{R}^{m+1}$是仿射的，即$g(x)=\left[\begin{array}{c}{A} \\ {c^{T}}\end{array}\right] x+\left[\begin{array}{l}{b} \\ {d}\end{array}\right]$，则函数$$f(x)=(A x+b) /\left(c^{T} x+d\right), \quad \operatorname{dom} f=\left\{x | c^{T} x+d>0\right\}$$是线性分割函数。
 
-###一般性不等式
+### 一般性不等式
 感觉没什么用
-###分割面与支撑面
+### 分割面与支撑面
 先介绍一个**分割超平面定理**（使用超平面或者仿射函数来分割不相交的凸集）：假设$C$和$D$是两个不相交的凸集，即$C \cap D = \emptyset$。然后存在$a \ne 0$和$b$，使得${a^T}x \le b$对于所有$x \in C$，${a^T}x \ge b$对于所有$x \in D$。换句话说，${a^T}x - b$这一仿射函数在$C$上是非正的，在$D$上是非负的。对于集合$C$和$D$，超平面$\{ x|{a^T}x = b\} $被称为分离超平面，或被称为分离了集合$C$和$D$。当上述等号不存在时，我们称为**严格分离**。
 
 **支撑面**：图片理解如下所示，其实很简单的就可以理解，就是存在一个面，把某一平面“支”起来了。用数学语句表达为：假设$C \subseteq \mathbf{R}^{n}$，以及$x_0$是一个集合中的边界点，如果$a \neq 0$且$a^{T} x \leq a^{T} x_{0}$对于所有$x \in C$都成立，则超平面$\left\{x | a^{T} x=a^{T} x_{0}\right\}$是一个支撑面。
 <center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/支撑面.jpg" width=80% height=80% /></center>
-###对偶圆锥以及一般性不等式
+### 对偶圆锥以及一般性不等式
 跳过，书本51
 
-##凸函数
-###基本性质
+## 凸函数
+### 基本性质
 1.**定义**：如果$f$的定义域是凸集，如果$x$和$y$属于定义域，且$0 \leq \theta \leq 1$，则函数$f$是凸的，且存在下式：
 $$
 \begin{equation}
@@ -127,7 +127,7 @@ $$
 
 3.范数（norms）、最大值函数（Max function）以及二次线性函数$f(x, y)=x^{2} / y$（Quadratic-over-linear function）是凸函数、几何平均函数$f(x)=\left(\prod_{i=1}^{n} x_{i}\right)^{1 / n}$（Geometric mean）是凹函数。
 
-###上镜图Epigraph
+### 上镜图Epigraph
 定义为：
 $$
 \begin{equation}
@@ -138,7 +138,7 @@ $$
 几何解释就是函数上面的所有部分就是上镜图，如图所示：
 <center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/上镜图.jpg" width=80% height=80% /></center>
 
-###子级集Sublevel sets 
+### 子级集Sublevel sets 
 Sublevel sets的定义如下：
 $$
 \begin{equation}
@@ -149,7 +149,7 @@ $$
 
 <font color="blue">***Remark for 上镜图以及子级集***</font>：如果函数是凹的，上述定义也成立，只是不等式符号要变。
 
-###Jensen's 不等式
+### Jensen's 不等式
 凸函数的定义（\ref{convex_function}）有时也被称为Jensen's 不等式，且可以拓展为向量形式：
 $$
 \begin{equation}
@@ -172,10 +172,10 @@ f(\mathbf{E} x) \leq \mathbf{E} f(x)
 \end{equation}
 $$
 
-###一些常用不等式
+### 一些常用不等式
 <center><img src="/Users/wjh/Desktop/🍓/Z-基于视觉的控制/文档/书/数学书/优化/常见不等式.jpg" width=100% height=100% /></center>
 
-###保持凸函数的运算
+### 保持凸函数的运算
 <details>
 <summary style><font color="#006666">几种运算</font>
 </summary>
@@ -218,11 +218,19 @@ $$
 </summary>
 $f$对$x$的一阶偏导为：
 $$
-\begin{array}{l}\frac{{\partial f}}{{\partial x}} = \frac{{\partial {x^T}Ax}}{{\partial x}} + \frac{{\partial 2{x^T}By}}{{\partial x}}\\ = \frac{{\partial {x^T}}}{{\partial x}}Ax + \frac{{\partial {{({A^T}x)}^T}}}{{\partial x}}x + \frac{{\partial {x^T}}}{{\partial x}}2By\\ = Ax + {A^T}x + 2By\\ = 2Ax + 2By\end{array}
+\begin{array}{l}
+\frac{{\partial f}}{{\partial x}} = \frac{{\partial {x^T}Ax}}{{\partial x}} + \frac{{\partial 2{x^T}By}}{{\partial x}}\\
+ = \frac{{\partial {x^T}}}{{\partial x}}Ax + \frac{{\partial {{({A^T}x)}^T}}}{{\partial x}}x + \frac{{\partial {x^T}}}{{\partial x}}2By\\
+ = Ax + {A^T}x + 2By\\
+ = 2Ax + 2By
+\end{array}
 $$
 $f$对$y$的一阶偏导为：
 $$
-\begin{array}{l}\frac{{\partial f}}{{\partial y}} = \frac{{\partial {y^T}Cy}}{{\partial y}} + \frac{{\partial 2{x^T}By}}{{\partial y}}\\ = 2Cy + 2xB\end{array}
+\begin{array}{l}
+\frac{{\partial f}}{{\partial y}} = \frac{{\partial {y^T}Cy}}{{\partial y}} + \frac{{\partial 2{x^T}By}}{{\partial y}}\\
+ = 2Cy + 2xB
+\end{array}
 $$
 $f$对$x$的二阶偏导为：
 $$
@@ -244,13 +252,19 @@ $$
 $$
 所以$f$的Hessian矩阵为：
 $$
-H = \left[ {\begin{array}{*{20}{c}}{2A}&{2B}\\{2{B^T}}&{2C}\end{array}} \right]
+H = \left[ {\begin{array}{*{20}{c}}
+{2A}&{2B}\\
+{2{B^T}}&{2C}
+\end{array}} \right]
 $$
 令Hessian矩阵大于0即可得到函数f是凸的，即得到f是凸的条件为：
 $$
 \begin{equation}
 \label{Hessian}
-\left[ {\begin{array}{*{20}{c}}A&B\\{{B^T}}&C\end{array}} \right] \ge 0
+\left[ {\begin{array}{*{20}{c}}
+A&B\\
+{{B^T}}&C
+\end{array}} \right] \ge 0
 \end{equation}
 $$
 根据Schur补引理：
@@ -264,9 +278,17 @@ $$\frac{{\partial Ax}}{{\partial x}} = {A^T}$$
 $$\frac{{\partial {x^T}A}}{{\partial x}} = A$$
 
 <font color="blue">***Remark for Hessian matrix：***</font>求解Hessian矩阵其实不用这么麻烦，只需要将$f(x,y)$写成向量形式，然后中间的矩阵就是Hessian矩阵，即
-$$f(x,y)=\left[ {\begin{array}{*{20}{c}}{{x^T}}&{{y^T}}\end{array}} \right]\left[ {\begin{array}{*{20}{c}}A&B\\{{B^T}}&C\end{array}} \right]\left[ {\begin{array}{*{20}{c}}x\\y\end{array}} \right]$$
+$$f(x,y)=\left[ {\begin{array}{*{20}{c}}
+{{x^T}}&{{y^T}}
+\end{array}} \right]\left[ {\begin{array}{*{20}{c}}
+A&B\\
+{{B^T}}&C
+\end{array}} \right]\left[ {\begin{array}{*{20}{c}}
+x\\
+y
+\end{array}} \right]$$
 
-###共轭函数The conjugate function
+### 共轭函数The conjugate function
 **1. 定义：**
 $$f^{*}(y)=\sup _{x \in \operatorname{dom} f}\left(y^{T} x-f(x)\right)$$
 几何解释为：
@@ -280,7 +302,7 @@ $$f^{*}(y)=\sup _{x \in \operatorname{dom} f}\left(y^{T} x-f(x)\right)$$
 &ensp;&ensp;&ensp;**复合函数**：$g(x)=f(A x+b)$ 对应 $g^{*}(y)=f^{*}\left(A^{-T} y\right)-b^{T} A^{-T} y$
 &ensp;&ensp;&ensp;**求和**：$f(u, v)=f_{1}(u)+f_{2}(v)$ 对应 $f^{*}(w, z)=f_{1}^{*}(w)+f_{2}^{*}(z)$
 
-###拟凸函数Quasiconvex functions
+### 拟凸函数Quasiconvex functions
 **1. 定义：**
 $$S_{\alpha}=\{x \in \operatorname{dom} f | f(x) \leq \alpha\}$$
 几何解释为：
@@ -324,12 +346,12 @@ $$
 &ensp;&ensp;&ensp;最小值：$g(x)=\inf _{y \in C} f(x, y)$
 </details>
 
-###Log凹、凸函数Log-concave and log-convex P104-108
-###一般行不等式的凸性Convexity with respect to generalized inequalities P108-P111
+### Log凹、凸函数Log-concave and log-convex P104-108
+### 一般行不等式的凸性Convexity with respect to generalized inequalities P108-P111
 
 
-##凸优化问题Chapter4 
-###基本术语Basic terminology：
+## 凸优化问题Chapter4 
+### 基本术语Basic terminology：
 我们定义如下形式为一个带有约束的优化问题：
 $$
 \begin{equation}
@@ -371,7 +393,7 @@ $$
 \begin{array}{cl}{\underset{}{\operatorname{minimize}}} & {f_{0}(z)} \\ {\text { subject to }} & {f_{i}(z) \leq 0, \quad i=1, \ldots, m} \\ {} & {h_{i}(z)=0, \quad i=1, \ldots, p} \\ {} & {\|z-x\|_{2} \leq R}\end{array}
 \end{equation}
 $$
-###等价问题Equivalent problems：
+### 等价问题Equivalent problems：
 
 
 
