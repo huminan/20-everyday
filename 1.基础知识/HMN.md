@@ -179,8 +179,51 @@ $$
 
 将单纯形写作多角体的形式：
 
-![image-20190805150828875](/Users/Husir/Desktop/simplex2polyhedra.png)
+![image-simplex2polyhedra](./img-ch1/h-simplex2polyhedra.png)
 
 ### 半正定锥
 
-一个对称矩阵 $S\in \mathbb{R}^n$ 有 $n(n+1)/2$ 个未知的 entries {$x_1,x_2,...$}（也就是这么多维度），那么半正定矩阵的 entries 属于一个凸锥。
+一个对称矩阵 $S\in \mathbb{R}^n$ 有 $n(n+1)/2$ 个未知的 entries {$x_1,x_2,...$}（也就是这么多维度），在这些 entries 形成的空间中，半正定矩阵的 entries 所在的空间是一个凸锥，称为半正定锥。
+
+![image-semidefinitecone](./img-ch1/h-semidefinitecone.png)
+
+## 保持凸性的运算操作
+
+1. 多个凸集之间的交运算还是凸集；
+
+2. 凸集经过仿射运算后还是凸集。仿射运算包括
+
+   * $f(x)=Ax+b$（包含平移、放缩）
+
+   * $f^{-1}(x)$
+
+   * 对该凸集某些坐标上的投影（去除某些维度）
+
+   * 两个凸集相加和部分相加（通过两个凸集的笛卡尔积向 $f(x)=x_1+x_2$ 作投影可证）
+
+     （注：两个凸集 $S_1,S_2$ 的笛卡尔积 $S_d$ 还是凸的）（注意，相加不是集合的并运算）
+
+例1：多角体可以描述为集合 $x$ 经仿射变换 $f(x) = (b − Ax, d − C x)$ 后与集合 $\{0\}$ 的笛卡尔积，
+
+![image-h-polyhedron-Cartesianproduct](./img-ch1/h-polyhedron-Cartesianproduct.png)
+
+例2：线性矩阵不等式（LMI）
+
+![image-LMI](./img-ch1/h-LMI.png)
+
+其中 $A$、$B$ 均为对称矩阵，该不等式的解空间是一个凸集：半正定锥在仿射方程 $f(x)=B-A(x)$ 上的逆映射。
+
+例3：**双曲线锥**
+$$
+\{x\,\vert\,x^TPx\le (c^Tx)^2,\,c^Tx\ge0\}
+$$
+是二次锥 $\{(z,t)\,|\,z^Tz\le t^2,\,t\ge0\}$ 在仿射方程 $f(x)=(P^{1/2}x,c^Tx)$ 上的逆映射；
+
+例4：**椭球**
+$$
+\{x\,|\,(x-x_c)^TP^{-1}(x-x_c)\le 1\}
+$$
+是球 $\{u\,|\,\Vert u\Vert_2\le1\}$ 在仿射方程 $f(x)=P^{1/2}u+x_c$ 上的映射。
+
+3. 线性可分
+
