@@ -108,6 +108,8 @@ $F$ 是计算目标函数和约束函数 $f_0,\,f_1,\dots,\,f_m$ 的一阶和二
 * 启发式方法结合凸优化来求解；
 * Bounds：使用一个凸上(下)界来包含非凸问题最优值的上(下)界。
 
+
+
 ## 定义
 
 ### 直线
@@ -152,7 +154,7 @@ $$
 
 可见超平面是一个仿射集，它将高位空间分为两个半空间，半空间不是仿射集，但是凸集。
 
-### Norm cone
+### 范数锥
 
 $$
 C=\{(x,t)\in \mathbb{R}^{n+1}\,\vert\,\Vert x\Vert_2\le t\}
@@ -186,6 +188,8 @@ $$
 一个对称矩阵 $S\in \mathbb{R}^n$ 有 $n(n+1)/2$ 个未知的 entries {$x_1,x_2,...$}（也就是这么多维度），在这些 entries 形成的空间中，半正定矩阵的 entries 所在的空间是一个凸锥，称为半正定锥。
 
 ![image-semidefinitecone](./img-ch1/h-semidefinitecone.png)
+
+
 
 ## 保持凸性的运算操作
 
@@ -257,6 +261,8 @@ $$
 
 例子：条件概率空间是概率空间的线性分式投影。所以若联合概率空间是凸的，那么其条件概率空间也是凸的。
 
+
+
 ### 广义不等式
 
 真锥（proper cone）$K$ 的定义：凸、闭、无空内点、不包含线（$x\in K,-x\in K\Rightarrow x=0$）。利用真锥可以定义不等式
@@ -271,3 +277,71 @@ $$
 *  $K=\{c\in R^n|c_1+c_2t+\dots+c_nt^{n-1}\ge0\ \mbox{for}\ t\in[0,1]\},$ 是多项式非负真锥。
 
 广义不等式拥有数值不等式的大多数性质，但是有些不一样：在广义不等式中，并不是集合 $K$ 内任意的两个元素都是可以直接做比较的，这使得最大最小值问题变得复杂。
+
+---
+
+**广义线性不等式定理**：广义线性严格不等式
+$$
+Ax<_Kb
+$$
+可以转化为：不存在 $\lambda$ 使
+$$
+\lambda\neq0,\quad\lambda\ge_{K}0,\quad A^T\lambda=0,\quad \lambda^Tb\le0.
+$$
+
+---
+
+### 广义不等式意义下的最小值
+
+![1566444166486](./img-ch1/h-minimal.png)
+
+## 对偶
+
+### 对偶锥
+
+锥 $K$ 的对偶锥 $K^*$ 是
+$$
+K^*=\{y\,|\,x^Ty\ge0\ \mbox{for all}\ x\in K\}.
+$$
+从**几何的角度**出发：$y\in K^*\ \Leftrightarrow\  -y$ 是 $K$ 的（原点）支撑面的梯度。
+
+几个常用的对偶锥：
+
+![1566437525744](./img-ch1/h-dualcone)
+
+特别地，范数锥 $K=\{(x,t)\in R^{n+1}\,|\,\Vert x\Vert\le t\}$ 的对偶锥 $K^*=\{(u,v)\in R^{n+1}\,|\,\Vert u\Vert_*\le v\}$，其中 $\Vert u\Vert_*=\sup\{u^Tx\,|\,\Vert x\Vert\le1\}$.
+
+> 若 $p$ 范数的对偶范数为 $q$ 范数，那么有 $\frac{1}{p}+\frac{1}{q}=1$.
+
+### 广义对偶不等式
+
+![1566439612367](./img-ch1/h-dual-inequalities)
+
+> $y\in K^*\quad\Leftrightarrow \quad (y^T)(x)\ge0\ \ \mbox{for all}\ x\in K$
+
+所以有
+$$
+\lambda \le_{K^*}\mu\ \mbox{ if and only if }\ \lambda^Tx\le\mu^Tx\ \mbox{ for }\ x\ge_K0.
+$$
+对应地，有
+$$
+x \le_{K} y\ \mbox{ if and only if }\ \lambda^Tx\le\lambda^Ty\ \mbox{ for }\ \lambda\ge_{K^*}0.
+$$
+
+---
+
+**广义线性不等式定理（增）**：广义线性严格不等式
+$$
+Ax<_Kb
+$$
+可以转化为：不存在 $\lambda$ 使
+$$
+\lambda\neq0,\quad\lambda\ge_{K^*}0,\quad A^T\lambda=0,\quad \lambda^Tb\le0.
+$$
+
+---
+
+### 对偶不等式意义下的最小值
+
+![1566443834233](./img-ch1/h-dual-minimum.png)
+
