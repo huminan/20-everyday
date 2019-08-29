@@ -255,7 +255,7 @@ b\\d
 $$
 则线性分式方程可以表示为
 $$
-f(x)=(Ax+b)/(c^Tx+d),\quad \mbox{dom}\ f=\{x|c^T+d>0\},
+f(x)=(Ax+b)/(c^Tx+d),\quad \mbox{dom}\ f=\left\{x|c^T+d>0\right\},
 $$
 这个方程还可以用矩阵方程表示。
 
@@ -313,6 +313,14 @@ $$
 
 > 若 $p$ 范数的对偶范数为 $q$ 范数，那么有 $\frac{1}{p}+\frac{1}{q}=1$.
 
+对于矩阵范数，二范数的对偶范数 $\Vert Z\Vert_{2*}$ 是奇异值之和
+$$
+\Vert Z\Vert_{2*}=\sigma_1(Z)+\cdots+\sigma_r(Z)=tr(Z^TZ)^{1/2}
+$$
+称之为 $nuclear$ 范数。
+
+
+
 ### 广义对偶不等式
 
 ![1566439612367](./img-ch1/h-dual-inequalities)
@@ -344,4 +352,165 @@ $$
 ### 对偶不等式意义下的最小值
 
 ![1566443834233](./img-ch1/h-dual-minimum.png)
+
+### Epigraph
+
+epigraph 就是函数的上界面，
+$$
+\mbox{epi}\ f=\left\{(x,t)\,|\,x\in \mbox{dom}\ f,\ f(x)\le t \right\}.
+$$
+**定理**：函数 $f(x)$ 是凸函数 $\Leftrightarrow$ $\mbox{epi}\ f$ 是凸集
+
+epigraph 将函数转化为集合，从集合的角度证明凸函数更容易。
+
+
+
+### Jensen 不等式
+
+如果 $f$ 是凸的，那么有 $f(Ex)\le Ef(x)$.
+
+
+
+### 函数保持凸性的操作
+
+1. 加权累加
+
+2. 仿射变换（针对自变量 $x$ 的仿射变换）
+
+3. 两个凸函数求逐点最大值（是个由最大值组成的函数）
+
+   $f(x)=\max_{y\in C}\left\{h(x,y),g(x,y)\right\}$
+
+   凸函数的上界函数
+
+   $f(x)=\sup\ g(x)$
+
+4. 复合函数：
+
+* $f(x)=h(g(x))$
+
+  $f(x)$ 凸的条件：
+
+  * $g\rightarrow$ 凸，$h \rightarrow$ 凸且非减
+  * $g \rightarrow$ 凹，$h\rightarrow$ 凸且非增
+
+* $f(x)=h(g(x))=h(g_1(x),g_2(x),...,g_k(x))$
+
+  f(x) 凸的条件：和上面的类似，只是具体到每个分量上
+
+5. 凸函数的下界函数
+
+   $f(x)=\inf_{y\in C}\ g(x,y)$
+
+6. 透视方程
+
+   $g(x,t)=tf(x/t)$
+
+   $g(x)=(c^Tx+d)f\left((Ax+b)/(c^Tx+d)\right)$
+
+   
+
+### 共轭函数
+
+在对偶中用途很广。
+
+共轭函数 $f^*(y)$ 表示原函数 $f(x)$ 与过原点平面 $x^Ty$ 的最大距离（寻找 $x$ 使之成立），数学表达式为
+$$
+f^*(y)=\sup_{x\in dom\,f}\left(y^Tx-f(x)\right).
+$$
+**dom** $f^*$ 是使上式有界的 $y$.
+
+**性质**：无论 $f$ 是否凸函数，共轭函数 $f^*$ 都是凸的。
+
+**例子**：
+
+* 仿射函数 $f(x)=ax+b$ 的共轭函数是直线 $f^*(a)=-b$。因为仅当 $y=a$ 时共轭函数有界，值为 $b$.
+
+* $f(x)=-\log x$ ，$f^*(y)=-\log(-y)-1,\,y<0.$ 
+
+当 $y>0$ 时，$g(x,y)=xy+\log x$ 无界，因此**dom** $f^*=y<0$；
+
+又因 $g(x,y)''<0$，所以 $g(x,y)$ 在 $g(x,y)'=0$ 处，即 $x=-\frac{1}{y}$ 处有最大值 $-\log(-y)-1$。
+
+* 负熵 $f(x)=x\log x,\,y\in\mathbb{R}_{++}$，$f^*(x)=e^{y-1},\,y\in\mathbb{R}$.
+
+* 严凸二次方程 $f(x)=\frac{1}{2}x^TQx,\,Q\in\mathbb{S}^n_{++}$，$f^*(y)=\frac{1}{2}y^TQ^{-1}y$.
+
+* 指示函数 $I_s(x)=0,x\in S;\ I_s(x)=\infty,x\notin S$. 它的共轭函数是凸集 $S$ 的支撑函数$I^*_S(y)=\sup_{x\in S}y^Tx.$
+
+* 范数 $f(x)=\Vert x\Vert$，
+  $$
+  f^*(y)=\left\{ \begin{aligned} &0\quad\Vert y\Vert_*\le1\\ &\infty\quad \mbox{其它} \end{aligned} \right.
+  $$
+
+* 平方范数 $f(x)=\frac{1}{2}\Vert x\Vert^2$ 的共轭函数是 $f^*(y)=\frac{1}{2}\Vert y\Vert_*^2.$
+
+**推论**：
+
+* Fenchel 不等式：$f(x)+f^*(y)\ge x^Ty$
+* 反身性，加法，缩放和仿射变换
+* 可微函数（没懂）
+
+
+
+### 拟凸函数
+
+若函数 $f:R^n\rightarrow R$ 的所有 sublevel sets $S_\alpha=\left\{ x\in dom\,f\,|\,f(x)\le\alpha \right\}$ 都是凸的，那么函数 $f$ 是一个拟凸函数。如图所示，
+
+![quasiconvex](./img-ch1/h-quasiconvex.png)
+
+图中这个函数虽然不是凸的，但是 $S_\alpha$ 的区间是凸的。$S_\alpha$ 其实就是无数条水平割线与 $f$ 的上镜图重合处的定义域区间所组成的集合。
+
+若 $-f$ 是拟凸函数，那么 $f$ 是 **拟凹函数**。如果一个函数既是拟凸又是拟凹，那么它是 **拟线性函数**。
+
+* $log$ 函数是拟线性函数
+
+* $f(x_1,x_2)=x_1x_2,\,x\in \mathbb{R}_+^2$ 是拟凹函数
+
+* 线性分式方程 $f(x)=\frac{a^Tx+b}{c^Tx+d}$ 是拟线性函数
+
+由于拟凸函数是凸函数的推广概念，因此保留了许多凸函数的性质：
+
+* Jensen 不等式：$f$ 是拟凸的 $\Leftrightarrow$ $dom\,f$ 是凸的，且
+  $$
+  f(\theta x+(1-\theta)y)\le\max\left\{ f(x),f(y) \right\}
+  $$
+
+  * 向量中的非零元素的个数：$\mbox{card}(x+y)\ge \min\left\{\mbox{card}(x),\mbox{card}(y)\right\};\ x,y\ge0$
+  * 半正定矩阵的秩：$\mbox{rank}(X+Y)\ge \min\left\{\mbox{rank}\,X,\mbox{rank}\,Y\right\};\ X,Y\in\mathbb{S}_+^n$
+
+* 一阶可微条件：$f$ 是拟凸的 $\Leftrightarrow$ $dom\,f$ 是凸的，且
+  $$
+  f(y)\le f(x)\Rightarrow\nabla f(x)^T(y-x)\le0
+  $$
+  凸函数的一阶可微条件中，若 $\nabla f(x)=0$，那么 $x$ 点处取最小值，这个特性在拟凸函数中不成立。
+
+* 二阶可微条件：$f$ 是拟凸的 $\Leftrightarrow$ $dom\,f$ 是凸的，且
+  $$
+  y^T\nabla f(x)=0\Rightarrow y^T\nabla^2f(x)y\ge0
+  $$
+
+#### 保持拟凸性的方法
+
+* 非负加权最大值 $f=\max\left\{w_1f_1,...,w_mf_m\right\}$
+
+  逐点上界 $f(x)=\sup_{y\in C}(w(y)g(x,y))$
+
+  * 广义特征值：一对对称矩阵 $(A,B)$ 的广义特征值是多项式 $\det (\lambda B-A)$ 的根。（当 $B=I$ 时就回到了一般情况）
+
+    当 $B\in \mathbb{S}_{++}$ 时，广义特征值也是 $B^{-1/2}AB^{-1/2}$ 的特征值。此时 **广义特征值分解** 可将这一对矩阵分解为
+    $$
+    A=V\Lambda V^T,\quad B=VV^T
+    $$
+    同样的，将 $B^{-1/2}AB^{-1/2}$ 分解为 $Q\Lambda Q^T$，则有 $V=B^{1/2}Q$.
+
+    $\Rightarrow$ **最大广义特征值**
+    $$
+    \lambda_\max(A,B)=\sup_{u\neq0}\frac{u^TAu}{u^TBu}=\sup\left\{ \lambda\,|\,\det(\lambda B-A)=0 \right\}
+    $$
+    在 **dom** $f=S^n\times S^n_{++}$ 上是拟凸的。
+
+* 复合函数
+
+* 最小值/下界
 
